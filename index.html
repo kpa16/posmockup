@@ -294,7 +294,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         tarContent.html('<div class="row text-center">' + jqhr.responseText + '</div>');
                     });
             $(document).ready(function () {
-                tarContent.load('pages/dashboard/dashboard.php');
+                tarContent.load('pages/dashboard/dashboard.html');
                 $("#menu-page>li>a").on("click", function (e) {
                     e.preventDefault();
                     if ($(this).parents("#menu-page").length === 1) {
@@ -304,7 +304,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             tarContent.empty();
                             $("#menu-page li").removeClass("active");
                             $(this).parent("li").addClass("active");
-                            tarContent.load(link + '.php');
+                            tarContent.load(link + '.html');
                             if ($("body").hasClass("sidebar-open")) {
                                 $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu");
                             }
