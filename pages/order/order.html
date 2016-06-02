@@ -6,9 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>Order Page</title>
-
         <style>
             .table td,
             .table th
@@ -25,11 +23,6 @@ and open the template in the editor.
             }
             tbody > tr{
                 cursor:pointer;
-            }
-            #notification-box{
-                position:fixed;
-                bottom:0;
-                z-index: 101;
             }
         </style>
     </head>
@@ -290,22 +283,22 @@ and open the template in the editor.
         <!-- End Modal Calculator-->
 
         <!-- notification -->
-        <div class="row" id="notification-box">
-            <div class="col-md-12 text-center">
-                <div class="alert" style="display:none" id="alert-box">
-                    <b><text id="notif-header"></text></b><text id="notif-info"></text>
-                </div>
+        <div class="text-center" id="notification-box">
+            <div class="alert" style="display:none" id="alert-box">
+                <b><text id="notif-header"></text></b><text id="notif-info"></text>
             </div>
         </div>
 
         <script>
             'use strict';
-            $(function () {
+            $(document).ready(function () {
                 $(document).on('keydown', function (e) {
                     if (e.which === 8 && !$(e.target).is("input:not([readonly]):not([type=radio]):not([type=checkbox]), textarea, [contentEditable], [contentEditable=true]")) {
                         e.preventDefault();
                     }
                 });
+
+
                 /*ANIMATION NOTIFICATION*/
                 var classAlertBefore = '';
                 function alertNotification(selectorAlert, notifHeader, notifInfo) {
@@ -335,9 +328,12 @@ and open the template in the editor.
                 function infoCalculator() {
                     $('#howtouseCalc').modal('show');
                 }
+
+                var modalDiscount = $('#modalDiscount');
                 /*CALCULATOR START*/
                 //focusing calculator
-                $('#e-calculator').focus();
+                var calculator = $('#e-calculator');
+                calculator.focus();
 
                 var holdItem = undefined;
                 var qtyNumber = "";
@@ -380,10 +376,9 @@ and open the template in the editor.
                     alertNotification('alert-info', 'Item Selected ', '<b>Name : </b>' + holdItem[2]);
                     $("#salesOrder tbody>tr").removeClass("highlight");
                     $(rowOrder).addClass("highlight");
-                    $('#e-calculator').focus();
-                    //viewHold(holdItem, qtyNumber);
+                    calculator.focus();
                 });
-                $("#e-calculator").on('keydown', function (e) {
+                calculator.on('keydown', function (e) {
                     var char = e.keyCode;
                     var whiteList = [46, 48, 49, 50, 51, 52, 53, 53, 55, 56, 57, 8, 13];
                     if ($.inArray(char, whiteList) !== -1) {
@@ -458,19 +453,21 @@ and open the template in the editor.
                     }
                 });
                 //handling parameter from modal discount//
-                //$('#modalDiscount').on('hide.bs.modal', function (event) {
                 $('*[data-confirm-disc]').on('click', function () {
                     var discVal = $('*[data-disc]').val();
-                    //holdItem[2] = holdItem[2] + '<small>' + discVal + '</small>';
                     var idxItemOrder = tSalesOrder.column(0).data().indexOf(holdItem[0]);
                     var dataOrder = tSalesOrder.row(idxItemOrder).data();
-                    var calResultDisc = calsum(normalNum(dataOrder[3]),discVal);
-                    var calResult = calsum(-1,normalNum(caldiv(normalNum(calResultDisc),100)));
-                    var dataDisc = ['','',holdItem[2] + ' Discount ' + discVal + '%',calResult];
-                    tSalesOrder.row.add(dataDisc).draw();
+                    if (parseInt(dataOrder[1]) !== 0) {
+                        var calResultDisc = calsum(normalNum(dataOrder[3]), discVal);
+                        var calResult = calsum(-1, normalNum(caldiv(normalNum(calResultDisc), 100)));
+                        var dataDisc = ['', '', holdItem[2] + ' Discount ' + discVal + '%', calResult];
+                        tSalesOrder.row.add(dataDisc).draw();
+                    } else {
+                        alertNotification('alert-danger', 'Cannot add discount,', 'Because number qty <b>0</0>');
+                    }
+                    calculator.focus();
                 });
-                //});
-                $("#num-calcs>button").on('click', function (e) {
+                $("#num-calcs > button").on('click', function (e) {
                     var num = $(this).attr('id');
                     $(this).removeClass('hover');
                     if (num === 'clear') {
@@ -503,7 +500,8 @@ and open the template in the editor.
                                 qtyNumber = "";
                             } else if (num === 'disc') {
                                 $('#header-disc').html('Discount For Item ' + dataItemOrder[2]);
-                                $('#modalDiscount').modal('show');
+                                calculator.blur();
+                                modalDiscount.modal('show');
                             } else if (num.substring(0, 4) === 'num-') {
                                 var subStrChar = num.substring(4, num.length);
                                 var char = parseInt(subStrChar);
@@ -606,8 +604,8 @@ and open the template in the editor.
                 var result = price + qty;
                 return result.formatMoney(0, 3);
             }
-            function normalNum(num){
-                return num.replace(/,/g,'');
+            function normalNum(num) {
+                return num.replace(/,/g, '');
             }
             Number.prototype.formatMoney = function (n, x) {
                 var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';

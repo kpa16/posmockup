@@ -37,3 +37,21 @@ and open the template in the editor.
 .loader {
     background: url('../img/preload-cube.gif') 50% 50% no-repeat rgb(249,249,249);
 }
+@media (min-width: 768px) {
+    #notification-box{
+        bottom:0;
+        z-index: 101;
+        position: fixed;
+        left: 20%;
+        right:20%
+    }
+}
+@media (max-width: 767px) {
+    #notification-box{
+        bottom:0;
+        z-index: 101;
+        position: fixed;
+        left: 10%;
+        right: 10%;
+    }
+}
