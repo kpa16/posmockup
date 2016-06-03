@@ -323,6 +323,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 });
 
+                jQuery.calsum=function calsum(price, qty) {
+                    var result = price * qty;
+                    return result;
+                };
+                jQuery.caldiv=function caldiv(price, qty) {
+                    var result = price / qty;
+                    return result;
+                };
+                jQuery.caldec=function caldec(price, qty) {
+                    var result = price - qty;
+                    return result;
+                };
+                jQuery.calinc=function calinc(price, qty) {
+                    var result = price + qty;
+                    return result;
+                };
+                jQuery.normalNum=function normalNum(num) {
+                    return num.replace(/,/g, '');
+                };
                 Number.prototype.formatMoney = function (n, x) {
                     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
                     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');

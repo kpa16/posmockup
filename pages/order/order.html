@@ -68,11 +68,11 @@ and open the template in the editor.
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="3" style="text-align: right">Discount:</th>
+                                            <th colspan="3" style="text-align: right">Total Discount :</th>
                                             <th style="text-align: right">0</th>
                                         </tr>
                                         <tr>
-                                            <th colspan="3" style="text-align: right">Total:</th>
+                                            <th colspan="3" style="text-align: right">Subtotal :</th>
                                             <th style="text-align: right">0</th>
                                         </tr>
                                     </tfoot>
@@ -100,7 +100,7 @@ and open the template in the editor.
                                             <button type="button" class="btn btn-success btn-lg btn-number" id="del" title="Delete Selected Item"><i class="fa fa-times"></i></button>
                                             <button type="button" class="btn btn-success btn-lg btn-number" id="disc" title="Discount Selected Item"><i class="fa fa-ticket"></i></button>
                                             <button type="button" class="btn btn-success btn-lg btn-number" id="lstConsmr" data-toggle="modal" data-target="#listConsumer" title="List Consumer"><i class="fa fa-list-ol"></i></button>
-                                            <button type="button" class="btn btn-success btn-lg btn-calc" id="check-out"data-toggle="modal" data-target="#modalPayment"><i class="fa fa-check-square-o" title="Payment Order"></i>Payment</button>
+                                            <button type="button" class="btn btn-success btn-lg btn-calc" id="check-out" data-target="#modalPayment"><i class="fa fa-check-square-o" title="Payment Order"></i>Payment</button>
                                         </div>
                                     </div>
                                 </div>
@@ -158,14 +158,96 @@ and open the template in the editor.
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4>Processing Payment</h4>
+                        <h4 class="text-center">Processing Payment</h4>
                     </div>
                     <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="lead">Amount Due 2/22/2014</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width:50%">Subtotal:</th>
+                                                <td id="ckoutsubtotal"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Discount:</th>
+                                                <td id="ckoutdisc"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Tax (9.3%)</th>
+                                                <td id="ckouttax"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total:</th>
+                                                <td id="ckoutall"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="lead">Payment Methods:</p>
+                                <!--<img src="dist/img/credit/visa.png" alt="Visa">
+                                <img src="dist/img/credit/mastercard.png" alt="Mastercard">
+                                <img src="dist/img/credit/american-express.png" alt="American Express">
+                                <img src="dist/img/credit/paypal2.png" alt="Paypal">-->
 
+                                <div class="text-center" role="tablist" id="checkouttab">
+                                    <a role="persentation" data-toggle="tab" href="#cash" aria-controls="cash"><button class="btn btn-primary" type="submit">Cash</button></a>
+                                    <a role="persentation" data-toggle="tab" href="#debit" aria-controls="debit"><button class="btn btn-success" type="submit">Debit</button></a>
+                                    <a role="persentation" data-toggle="tab" href="#credit" aria-controls="credit"><button class="btn btn-info" type="submit">Credit</button></a>
+                                </div>
+                                <div class="well well-sm no-shadow" style="margin-top: 10px;">
+                                    <div class="tab-content text-center">
+                                        <div role="tabpanel" class="tab-pane active in" id="cash">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Rp</div>
+                                                        <input type="number" class="form-control" id="amountCash" placeholder="Amount" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="debit">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div>Digit number : </div>
+                                                        <input type="number" class="form-control" id="numDebit" placeholder="16 Digit Number Debit Card" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="credit">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div>Digit number : </div>
+                                                        <input type="number" class="form-control" id="numCredit" placeholder="16 Digit Number Credit Card" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-print">
+                            <div class="col-xs-12">
+                                <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                                <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                                <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                            </div>
+                        </div>
                     </div>
+                    <!--
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -323,12 +405,12 @@ and open the template in the editor.
         <script>
             'use strict';
             $(document).ready(function () {
+                /*handling prefent default from browser backspace*/
                 $(document).on('keydown', function (e) {
                     if (e.which === 8 && !$(e.target).is("input:not([readonly]):not([type=radio]):not([type=checkbox]), textarea, [contentEditable], [contentEditable=true]")) {
                         e.preventDefault();
                     }
                 });
-
                 /*ANIMATION NOTIFICATION*/
                 var classAlertBefore = '';
                 function alertNotification(selectorAlert, notifHeader, notifInfo) {
@@ -355,6 +437,41 @@ and open the template in the editor.
                     $('.alert.' + selectorAlert).find('#notif-info').html(notifInfo);
                 }
                 /*END ANIMATION NOTIFICATION*/
+
+                /*HANDLING PAYMENT CHANGE*/
+                $('#checkouttab').click(function (e) {
+                    e.preventDefault();
+                    $(this).tab('show');
+                });
+                /*HANDLING PAYMENT CHANGE END*/
+                /*FILLING FORM DATA PAYMENT*/
+                $('#check-out').click(function (e) {
+                    e.preventDefault();
+                    if (tSalesOrder.rows().data().length !== 0) {
+                        var modalckout = $(this).attr('data-target');
+                        $(modalckout).modal('show');
+                    } else {
+                        alertNotification('alert-warning', 'No Data Selected, ', 'Please select item at least one.');
+                    }
+                });
+
+                $('#modalPayment').on('show.bs.modal', function () {
+                    //var disc = $(modalckout+' th:nth-child(2)'); 
+                    //console.log('th:nth-child(1)',$(tSalesOrder.column($("#salesOrder thead th").length).footer()));
+                    //console.log($('tr:eq(0) th:eq(1)',tSalesOrder.table().footer()).text());
+                    //console.log($('tr:eq(1) th:eq(1)',tSalesOrder.table().footer()).text());
+                    var subtotal = $('tr:eq(1) th:eq(1)', tSalesOrder.table().footer()).text();
+                    var disc = $('tr:eq(0) th:eq(1)', tSalesOrder.table().footer()).text();
+                    $('#ckoutsubtotal').text(subtotal);
+                    $('#ckoutdisc').text(disc);
+                    var tax = 10;
+                    $('#ckouttax').text('10%');
+                    var aftertax = parseInt($.normalNum(subtotal.replace(/Rp/g, ''))) + $.caldiv($.calsum(parseInt($.normalNum(subtotal.replace(/Rp/g, ''))), tax), 100);
+                    $('#ckoutall').text('Rp ' + aftertax.formatMoney(0, 3));
+                });
+
+                /*FILLING FORM DATA PAYMENT END*/
+
                 function infoCalculator() {
                     $('#howtouseCalc').modal('show');
                 }
@@ -366,11 +483,11 @@ and open the template in the editor.
                         $('#modalDiscount').modal('show');
                     }
                 });
-                /*CALCULATOR START*/
+                /*CONF CALCULATOR START*/
                 //focusing calculator
                 var calculator = $('#e-calculator');
                 calculator.focus();
-
+                /*CONF CALCULATOR END*/
                 var holdItem = undefined;
                 var qtyNumber = "";
                 var tListItem = $("#listItems").DataTable({
@@ -422,20 +539,18 @@ and open the template in the editor.
                                     if (intVal(b) <= 0) {
                                         b = intVal(b) * -1;
                                     } else {
-                                        b=0;
+                                        b = 0;
                                     }
 
                                     console.log('a : ' + a + ' b :' + b);
                                     return intVal(a) + b;
                                 }, 0);
-                                
                         // Update footer Discount
-                        $('tr:eq(0) th:eq(1)', api.table().footer()).html('Rp ' + (pageTotalDisc*-1).formatMoney(0, 3));// + ' ( Rp' + total + ' total)');
+                        $('tr:eq(0) th:eq(1)', api.table().footer()).html('Rp ' + (pageTotalDisc * -1).formatMoney(0, 3));// + ' ( Rp' + total + ' total)');
                         // Update footer total
                         $('tr:eq(1) th:eq(1)', api.table().footer()).html('Rp ' + pageTotal.formatMoney(0, 3));// + ' ( Rp' + total + ' total)');
                     }
                 });
-
                 $("#listItems tbody").on('click', 'tr', function (e) {
                     var dataItem = tListItem.row(this).data();
                     if (holdItem !== undefined) {
@@ -518,7 +633,7 @@ and open the template in the editor.
                                             dataItemOrder[1] = parseInt(qtyNumber);
                                             dataItemList[2] = dataItemList[2] - parseInt(qtyNumber);
                                             //update the price
-                                            dataItemOrder[3] = calsum(normalNum(dataItemList[3]), qtyNumber);
+                                            dataItemOrder[3] = $.calsum($.normalNum(dataItemList[3]), qtyNumber).formatMoney(0, 3);
                                             tSalesOrder.row(idxItemOrder).data(dataItemOrder).draw();
                                             tListItem.row(idxItemList).data(dataItemList).draw();
                                             alertNotification('alert-success', 'Data Stored, ', 'Item : <b>' + dataItemOrder[2] + '</b>, Qty : <b>' + dataItemOrder[1] + '</b>');
@@ -547,8 +662,8 @@ and open the template in the editor.
                     var dataOrder = tSalesOrder.row(idxItemOrder).data();
                     if (parseInt(dataOrder[1]) !== 0) {
                         var idxExistDisc = tSalesOrder.column(0).data().indexOf(dataOrder[0] + '$$$');
-                        var calResultDisc = calsum(normalNum(dataOrder[3]), discVal);
-                        var calResult = calsum(-1, normalNum(caldiv(normalNum(calResultDisc), 100)));
+                        var calResultDisc = $.calsum($.normalNum(dataOrder[3]), discVal);
+                        var calResult = $.calsum(-1, $.normalNum($.caldiv($.normalNum(calResultDisc), 100)));
                         var dataDisc = [dataOrder[0] + '$$$', '', dataOrder[2] + ' Discount ' + discVal + '%', calResult];
                         if (idxExistDisc !== -1) {
                             tSalesOrder.row(idxExistDisc).data(dataDisc).draw();
@@ -645,7 +760,7 @@ and open the template in the editor.
                                                 dataItemOrder[1] = parseInt(qtyNumber);
                                                 dataItemList[2] = dataItemList[2] - parseInt(qtyNumber);
                                                 //update the price
-                                                dataItemOrder[3] = calsum(normalNum(dataItemList[3]), qtyNumber);
+                                                dataItemOrder[3] = $.calsum($.normalNum(dataItemList[3]), qtyNumber);
                                                 tSalesOrder.row(idxItemOrder).data(dataItemOrder).draw();
                                                 tListItem.row(idxItemList).data(dataItemList).draw();
                                                 alertNotification('alert-success', 'Data Stored, ', 'Item : <b>' + dataItemOrder[2] + '</b>, Qty : <b>' + dataItemOrder[1] + '</b>');
@@ -684,28 +799,6 @@ and open the template in the editor.
 
             function viewHold(holdItem, qty) {
                 $("#hold-item").html(JSON.stringify("Hold item : " + holdItem + " Qty : " + qty));
-            }
-            function calsum(price, qty) {
-                var result = price * qty;
-                return result.formatMoney(0, 3);
-            }
-            function caldiv(price, qty) {
-                var result = price / qty;
-                return result.formatMoney(0, 3);
-            }
-            function caldec(price, qty) {
-                var result = price - qty;
-                return result.formatMoney(0, 3);
-            }
-            function calinc(price, qty) {
-                var result = price + qty;
-                return result.formatMoney(0, 3);
-            }
-            function normalNum(num) {
-                return num.replace(/,/g, '');
-            }
-            function appFormatMoney(param) {
-                return param.formatMoney(0, 3);
             }
         </script>
     </body>
