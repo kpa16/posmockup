@@ -135,60 +135,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- Sidebar Menu -->
                     <ul class="sidebar-menu" id="menu-page">
-                        <li class="header">MENU</li>
+                        <li class="header">MODULE</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active">
-                            <a href="pages/dashboard/dashboard">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#pages/order/order">
-                                <i class="fa fa-edit"></i> <span>Orders</span>
-                            </a>
-                        </li>
-                        <li><a href="#pages/item/item"><i class="fa fa-cubes"></i> <span>Items</span></a></li>
-                        <li><a href="#pages/item/item"><i class="fa fa-user"></i> <span>Users</span></a>
+                        <li><a href="#"><i class="fa fa-user"></i> <span>User Registered</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Add User</a></li>
-                                <li><a href="#">Add Roles</a></li>
-                                <li><a href="#">Add Group</a></li>
+                                <li><a href="#">User Registration</a></li>
+                                <li><a href="#">Registration Verification</a></li>
+                                <li><a href="#">Forgot & Reset Password</a></li>
+                                <li><a href="#">User Profile Display & Edit</a></li>
                             </ul>
                         </li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-user-plus"></i> <span>Customer</span><i class="fa fa-angle-left pull-right"></i></a>
+                        <li><a href="#"><i class="fa fa-gear"></i> <span>Application</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">List Customer</a></li>
-                                <li><a href="#">Coupon</a></li>
+                                <li><a href="#">Application Configuration</a></li>
+                                <li><a href="#">Module/Feature Activation</a></li>
                             </ul>
                         </li>
-                        <li class="treeview"><a href="#"><i class="fa fa-newspaper-o"></i> <span>Report</span><i class="fa fa-angle-left pull-right"></i></a>
+                        <li><a href="#"><i class="fa fa-code-fork"></i> <span>Branch Management</span></a></li>
+                        <li><a href="#"><i class="fa fa-eye"></i> <span>Operator Management</span></a></li>
+                        <li><a href="#pages/item/item.html"><i class="fa fa-cube"></i> <span>Item Management</span></a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>Stock Management</span></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Branch Report</a></li>
-                                <li><a href="#">Top Product</a></li>
-                                <li><a href="#">Sales</a></li>
-                                <li><a href="#">Profit</a></li>
+                                <li><a href="#">Purchase Item</a></li>
+                                <li><a href="#">Transfer In Item</a></li>
+                                <li><a href="#">Transfer Out Item</a></li>
+                                <li><a href="#">Adjust Item</a></li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="fa fa-users"></i> <span>User Administrator</span></a>
+                        <li><a href="#"><i class="fa fa-user-plus"></i> <span>Customer Management</span></a></li>
+                        <li><a href="#"><i class="fa fa-truck"></i> <span>Supplier Management</span></a></li>
+                        <li><a href="#pages/order/order.html"><i class="fa fa-edit"></i> <span>POS</span></a></li>
+                        <li class="treeview"><a href="#"><i class="fa fa-newspaper-o"></i> <span>Stock Report</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Add User</a></li>
-                                <li><a href="#">Add Roles</a></li>
-                                <li><a href="#">Add Group</a></li>
+                                <li><a href="#">Branch Stock Report</a></li>
+                                <li><a href="#">Overall Stock Report</a></li>
+                                <li><a href="#">Branch Stock Movement Report</a></li>
+                                <li><a href="#">Overall Stock Movement Report</a></li>
                             </ul>
                         </li>
-                        <li><a href="#"><i class="fa fa-cubes"></i> <span>Branch</span></a></li>
-                        <li class="treeview">
-                            <a href="#"><i class="fa fa-gear"></i> <span>Control Panel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <li class="treeview"><a href="#"><i class="fa fa-newspaper-o"></i> <span>Sales Dashboard</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#" title="setting currency for your application">Currency Setting</a></li>
-                                <li><a href="#">Tax Setting</a></li>
-                                <li><a href="#">Customize Invoice Printing</a></li>
-                                <li><a href="#">Customize Coupon</a></li>
-                                <li><a href="#">Upload Product</a></li>
-                                <li><a href="#">Setup Creadit Card Processing</a></li>
+                                <li><a href="#">Monthly Branch Sales Dashboard</a></li>
+                                <li><a href="#">Weekly Branch Sales Dashboard</a></li>
+                                <li><a href="#">Daily Branch Sales Dashboard</a></li>
+                                <li><a href="#">Monthly Branch Profit Dashboard</a></li>
+                                <li><a href="#">Weekly Branch Profit Dashboard</a></li>
+                                <li><a href="#">Daily Branch Profit Dashboard</a></li>
+                                <li><a href="#">Overall Sales Trend</a></li>
+                                <li><a href="#">Overall Profit Trend</a></li>
+                                <li><a href="#">Branch Sales Trend</a></li>
+                                <li><a href="#">Branch Profit Trend</a></li>
                             </ul>
                         </li>
+                        <li><a href="#pages/order/order"><i class="fa fa-newspaper-o"></i> <span>Stock Dashboard</span></a></li>
                     </ul><!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
@@ -281,72 +280,79 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
         <script src="dist/js/app.min.js"></script>
         <script>
+
             'use strict';
             var tarContent = $("#page-content-menu");
-            $(document)
-                    .ajaxStart(function () {
-                        tarContent.addClass('loader');
-                    })
-                    .ajaxSuccess(function (data) {
-                        tarContent.removeClass('loader');
-                    })
-                    .ajaxError(function (event, jqhr, gatau) {
-                        tarContent.html('<div class="row text-center">' + jqhr.responseText + '</div>');
-                    });
             $(document).ready(function () {
-                var statePg = window.location.href.split('#');
-                if (statePg[1] !== undefined) {
-                    $("#menu-page li").removeClass("active");
-                    $('a[href="#' + statePg[1] + '"]').parent("li").addClass("active");
-                    tarContent.load(statePg[1] + '.html');
-                } else {
-                    tarContent.load('pages/dashboard/dashboard.html');
-                }
-                $("#menu-page>li>a").on("click", function (e) {
-                    if ($(this).parents("#menu-page").length === 1) {
-                        var link = $(this).attr('href').replace('#', '');
-                        var ckState = $(this).attr('href').split("#");
-                        if (link !== '#' && ckState[1] !== undefined) {
-                            tarContent.empty();
-                            $("#menu-page li").removeClass("active");
-                            $(this).parent("li").addClass("active");
-                            tarContent.load(link + '.html');
-                            if ($("body").hasClass("sidebar-open")) {
-                                $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu");
-                            }
-                        } else {
-                            e.preventDefault();
-                        }
+                tarContent.load('pages/order/order.html');
+                $('a').on('click', function (e) {
+                    var link = $(this).attr('href');
+                    if (link !== '#') {
+                        tarContent.load(link.replace('#', ''));
+                    } else {
+                        e.preventDefault();
                     }
-
-                    //$("body").hasClass("sidebar-collapse"); ? $("body").removeClass("sidebar-collapse").trigger("expanded.pushMenu"); : $("body").addClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").hasClass("sidebar-open"); ? $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").addClass("sidebar-open").trigger("expanded.pushMenu");
-
                 });
-
-                jQuery.calsum=function calsum(price, qty) {
-                    var result = price * qty;
-                    return result;
-                };
-                jQuery.caldiv=function caldiv(price, qty) {
-                    var result = price / qty;
-                    return result;
-                };
-                jQuery.caldec=function caldec(price, qty) {
-                    var result = price - qty;
-                    return result;
-                };
-                jQuery.calinc=function calinc(price, qty) {
-                    var result = price + qty;
-                    return result;
-                };
-                jQuery.normalNum=function normalNum(num) {
-                    return num.replace(/,/g, '');
-                };
-                Number.prototype.formatMoney = function (n, x) {
-                    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
-                    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
-                };
+                /*
+                 var statePg = window.location.href.split('#');
+                 if (statePg[1] !== '') {
+                 $("#menu-page li").removeClass("active");
+                 $('a[href="#' + statePg[1] + '"]').parent("li").addClass("active");
+                 tarContent.load(statePg[1] + '.html');
+                 } else {
+                 //tarContent.load('pages/dashboard/dashboard.html');
+                 e.preventDefault();
+                 }
+                 
+                 $("#menu-page>li>a").on("click", function (e) {
+                 if ($(this).parents("#menu-page").length === 1) {
+                 var link = $(this).attr('href').replace('#', '');
+                 var ckState = $(this).attr('href').split("#");
+                 if (link !== '#' && ckState[1] !== undefined) {
+                 tarContent.empty();
+                 $("#menu-page li").removeClass("active");
+                 $(this).parent("li").addClass("active");
+                 tarContent.load(link + '.html');
+                 if ($("body").hasClass("sidebar-open")) {
+                 $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu");
+                 }
+                 } else {
+                 e.preventDefault();
+                 }
+                 }
+                 
+                 //$("body").hasClass("sidebar-collapse"); ? $("body").removeClass("sidebar-collapse").trigger("expanded.pushMenu"); : $("body").addClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").hasClass("sidebar-open"); ? $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").addClass("sidebar-open").trigger("expanded.pushMenu");
+                 */
+            }).ajaxStart(function () {
+                tarContent.addClass('loader');
+            }).ajaxSuccess(function (data) {
+                tarContent.removeClass('loader');
+            }).ajaxError(function (event, jqhr, gatau) {
+                tarContent.html('<div class="row text-center">' + jqhr.responseText + '</div>');
             });
+            jQuery.calsum = function calsum(price, qty) {
+                var result = price * qty;
+                return result;
+            };
+            jQuery.caldiv = function caldiv(price, qty) {
+                var result = price / qty;
+                return result;
+            };
+            jQuery.caldec = function caldec(price, qty) {
+                var result = price - qty;
+                return result;
+            };
+            jQuery.calinc = function calinc(price, qty) {
+                var result = price + qty;
+                return result;
+            };
+            jQuery.normalNum = function normalNum(num) {
+                return num.replace(/,/g, '');
+            };
+            Number.prototype.formatMoney = function (n, x) {
+                var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+                return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+            };
         </script>
     </body>
 </html>
