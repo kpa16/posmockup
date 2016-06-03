@@ -143,12 +143,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li>
-                            <a href="pages/order/order">
+                            <a href="#pages/order/order">
                                 <i class="fa fa-edit"></i> <span>Orders</span>
                             </a>
                         </li>
-                        <li><a href="pages/item/item"><i class="fa fa-cubes"></i> <span>Items</span></a></li>
-                        <li><a href="pages/item/item"><i class="fa fa-user"></i> <span>Users</span></a>
+                        <li><a href="#pages/item/item"><i class="fa fa-cubes"></i> <span>Items</span></a></li>
+                        <li><a href="#pages/item/item"><i class="fa fa-user"></i> <span>Users</span></a>
                             <ul class="treeview-menu">
                                 <li><a href="#">Add User</a></li>
                                 <li><a href="#">Add Roles</a></li>
@@ -294,13 +294,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         tarContent.html('<div class="row text-center">' + jqhr.responseText + '</div>');
                     });
             $(document).ready(function () {
-                tarContent.load('pages/dashboard/dashboard.html');
+                var statePg = window.location.href.split('#');
+                if (statePg[1] !== undefined) {
+                    $("#menu-page li").removeClass("active");
+                    $('a[href="#' + statePg[1] + '"]').parent("li").addClass("active");
+                    tarContent.load(statePg[1] + '.html');
+                } else {
+                    tarContent.load('pages/dashboard/dashboard.html');
+                }
                 $("#menu-page>li>a").on("click", function (e) {
-                    e.preventDefault();
                     if ($(this).parents("#menu-page").length === 1) {
-                        var link = $(this).attr('href');
-                        e.preventDefault();
-                        if (link !== '#') {
+                        var link = $(this).attr('href').replace('#', '');
+                        var ckState = $(this).attr('href').split("#");
+                        if (link !== '#' && ckState[1] !== undefined) {
                             tarContent.empty();
                             $("#menu-page li").removeClass("active");
                             $(this).parent("li").addClass("active");
@@ -308,12 +314,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             if ($("body").hasClass("sidebar-open")) {
                                 $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu");
                             }
+                        } else {
+                            e.preventDefault();
                         }
                     }
 
                     //$("body").hasClass("sidebar-collapse"); ? $("body").removeClass("sidebar-collapse").trigger("expanded.pushMenu"); : $("body").addClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").hasClass("sidebar-open"); ? $("body").removeClass("sidebar-open").removeClass("sidebar-collapse").trigger("collapsed.pushMenu"); : $("body").addClass("sidebar-open").trigger("expanded.pushMenu");
 
                 });
+
+                Number.prototype.formatMoney = function (n, x) {
+                    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+                    return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+                };
             });
         </script>
     </body>

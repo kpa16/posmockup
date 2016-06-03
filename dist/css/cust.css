@@ -55,3 +55,9 @@ and open the template in the editor.
         right: 10%;
     }
 }
+
+.search-bar{
+    width:100%;
+    margin-left: 50%;
+    margin-right: 50%;
+}
