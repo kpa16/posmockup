@@ -663,7 +663,7 @@ and open the template in the editor.
                     if (parseInt(dataOrder[1]) !== 0) {
                         var idxExistDisc = tSalesOrder.column(0).data().indexOf(dataOrder[0] + '$$$');
                         var calResultDisc = $.calsum($.normalNum(dataOrder[3]), discVal);
-                        var calResult = $.calsum(-1, $.normalNum($.caldiv($.normalNum(calResultDisc), 100)));
+                        var calResult = $.calsum(-1, $.caldiv(calResultDisc, 100));
                         var dataDisc = [dataOrder[0] + '$$$', '', dataOrder[2] + ' Discount ' + discVal + '%', calResult];
                         if (idxExistDisc !== -1) {
                             tSalesOrder.row(idxExistDisc).data(dataDisc).draw();
