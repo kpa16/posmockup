@@ -61,3 +61,47 @@ and open the template in the editor.
     margin-left: 50%;
     margin-right: 50%;
 }
+
+
+
+
+.register-box-body,.lockscreen-item{
+    padding-top:0px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+
+    -webkit-box-shadow: -1px 7px 21px -2px rgba(0,0,0,0.26);
+    -moz-box-shadow: -1px 7px 21px -2px rgba(0,0,0,0.26);
+    box-shadow: -1px 7px 21px -2px rgba(0,0,0,0.26);
+}
+.register-page{
+    background:rgba(255, 255, 255, 0.5) !important;
+}
+.headline-img{
+    margin-right: -20px;
+    margin-left:-20px;
+}
+.register-box-body  .headline-img  img{
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.login-box-msg{
+    padding: 10px;
+} 
+.lockscreen{
+    background:rgba(254, 254, 254, 0.72);   
+}
+.lockscreen-footer{
+    bottom: 0;
+    position: absolute;
+    width:100%;
+    padding-bottom: 10px;
+}
+
+.login-footer{
+    width:100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -88,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="pages/user/profile.html" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="sidebar-menu" id="menu-page">
                         <li class="header">MODULE</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li><a href="#pages/dashboardldr/dashboardTemplate.html"><i class="fa fa-newspaper-o"></i> <span>Stock Dashboard</span></a></li>
+                        <li><a href="pages/dashboardldr/dashboardTemplate.html"><i class="fa fa-newspaper-o"></i> <span>Stock Dashboard</span></a></li>
                         <li><a href="#"><i class="fa fa-user"></i> <span>User Registered</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
                                 <li><a href="#">User Registration</a></li>
@@ -154,7 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li><a href="#"><i class="fa fa-code-fork"></i> <span>Branch Management</span></a></li>
                         <li><a href="#"><i class="fa fa-eye"></i> <span>Operator Management</span></a></li>
-                        <li><a href="#pages/item/item.html"><i class="fa fa-cube"></i> <span>Item Management</span></a></li>
+                        <li><a href="pages/item/item.html"><i class="fa fa-cube"></i> <span>Item Management</span></a></li>
                         <li><a href="#"><i class="fa fa-cubes"></i> <span>Stock Management</span></a>
                             <ul class="treeview-menu">
                                 <li><a href="#">Purchase Item</a></li>
@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Customer Management</span></a></li>
                         <li><a href="#"><i class="fa fa-truck"></i> <span>Supplier Management</span></a></li>
-                        <li><a href="#pages/order/order.html"><i class="fa fa-edit"></i> <span>POS</span></a></li>
+                        <li><a href="pages/order/order.html"><i class="fa fa-edit"></i> <span>POS</span></a></li>
                         <li class="treeview"><a href="#"><i class="fa fa-newspaper-o"></i> <span>Stock Report</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
                                 <li><a href="#">Branch Stock Report</a></li>
@@ -291,11 +291,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $(document).ready(function () {
                 tarContent.load('pages/order/order.html');
                 $('a').on('click', function (e) {
+                    e.preventDefault();
                     var link = $(this).attr('href');
                     if (link !== '#') {
-                        tarContent.load(link.replace('#', ''));
-                    } else {
-                        e.preventDefault();
+                        tarContent.load(link);
                     }
                 });
                 /*
